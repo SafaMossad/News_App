@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../layout/news_app/cubit/states.dart';
 import '../../../modules/business/business_screen.dart';
 import '../../../modules/science/science_screen.dart';
-import '../../../modules/settings_screen/settings_screen.dart';
 import '../../../modules/sports/sports_screen.dart';
 import '../../../shared/network/remote/dio_helper.dart';
 

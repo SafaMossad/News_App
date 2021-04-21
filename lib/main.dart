@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+
 import './layout/news_app/cubit/cubit.dart';
 import './layout/news_app/news_layout.dart';
 import './shared/bloc_observer.dart';
@@ -12,11 +13,16 @@ import './shared/network/local/cache_helper.dart';
 import './shared/network/remote/dio_helper.dart';
 
 void main() async {
-  // بيتأكد ان كل حاجه هنا في الميثود خلصت و بعدين يتفح الابلكيشن
+//check that all methods was Done then runApp
+
   WidgetsFlutterBinding.ensureInitialized();
 
+  //observe omit states or all app states
   Bloc.observer = MyBlocObserver();
+  //for firstly run dio object to ensure it is not  null
   DioHelper.init();
+
+  //for firstly check app mode
   await CacheHelper.init();
 
   bool isDark = CacheHelper.getBoolean(key: 'isDark');
@@ -24,14 +30,7 @@ void main() async {
   runApp(MyApp(isDark));
 }
 
-// Stateless
-// Stateful
-
-// class MyApp
-
 class MyApp extends StatelessWidget {
-  // constructor
-  // build
   final bool isDark;
 
   MyApp(this.isDark);
@@ -39,8 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers:
-      [
+      providers: [
         BlocProvider(
           create: (context) => NewsCubit()
             ..getBusiness()
